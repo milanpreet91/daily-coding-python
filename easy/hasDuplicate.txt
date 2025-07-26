@@ -1,0 +1,5 @@
+def hasDuplicate(self, nums: List[int]) -> bool:
+    aset = set(nums)
+    if(len(aset) != len(nums)):
+        return True
+    return False
