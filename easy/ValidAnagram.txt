@@ -1,0 +1,11 @@
+    def isAnagram(self, s: str, t: str) -> bool:
+        from collections import Counter
+        if len(s) != len(t):
+            return False
+        '''
+        if sorted(s) != sorted(t):
+            return False
+        '''
+        if Counter(s) != Counter(t):
+            return False
+        return True
