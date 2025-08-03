@@ -2,26 +2,44 @@ class MyHashSet:
     def __init__(self):
         self.capacity = 16
         self.data = [None] * self.capacity
+        self.size = 0
+        
+    def rehash(self):
+        new_arr = [k for k in self.data]
+        self.capacity = 2 * self.capacity
+        self.data = [None] * self.capacity
+        for key in new_arr:
+            self.add(key)
 
     def add(self, key: int) -> None:
         h = hash(key)
-        hash_index = h % self.size
-        bucket = self.data[hash_index]
+        hash_index = h % self.capacity
+        if self.contains(key):
+            return
         while self.data[hash_index]:
-            hash_index = (h+1) % self.size  
+            hash_index += 1  
+            if hash_index == self.capacity:
+                self.rehash()    
         self.data[hash_index] = key
 
     def remove(self, key: int) -> None:
         h = hash(key)
-        hash_index = h % self.size
-        arr = self.data[hash_index]
-        if key in self.data:
-            self.data.remove(key)
+        hash_index = h % self.capacity
+        while hash_index < self.capacity and self.data[hash_index] != key:
+            hash_index += 1
+        if hash_index == self.capacity:
+            return
+        self.data[hash_index] = None
 
     def contains(self, key: int) -> bool:
-        hash_index = hash(key) % self.size
-        arr = self.buckets[hash_index]
-        return key in self.data
+        h = hash(key)
+        hash_index = h % self.capacity
+        while hash_index < self.capacity and self.data[hash_index] != key:
+            hash_index += 1
+        
+        if hash_index == self.capacity:
+            return False
+        return True
 
 
 # Your MyHashSet object will be instantiated and called as such:
