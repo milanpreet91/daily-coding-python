@@ -32,28 +32,20 @@ class Solution:
             k += 1
         return arr
 
-    def sort(self, arr: List[int]) -> List[int]: 
+    def merge_sort(self, arr: List[int]) -> List[int]: 
         if len(arr) <= 1:
             return arr
 
         mid = (len(arr))//2
-        print(f"mid : {mid}")
-        first = self.sort(arr[:mid])
-        print(f"first half is: {first}")
-        second = self.sort(arr[mid:])
-        print(f"second half is: {second}")
+        first = self.merge_sort(arr[:mid])
+        second = self.merge_sort(arr[mid:])
         arr = self.merge(first, second)
-        print(f"merge gives: {arr}")
         return arr
-
-    def merge_sort(self, nums: List[int]):
-        n = len(nums)
-        return self.sort(nums[0:n])
 
     def sortArray(self, nums: List[int]) -> List[int]:
         n = len(nums)
         ##Merge Sort ## 
-        return self.merge_sort(nums)
+        return self.merge_sort(nums[0:n])
         ############
         '''
         ##BubbleSort## O(n^2)
