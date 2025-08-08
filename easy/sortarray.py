@@ -1,3 +1,10 @@
+##Time complexity ##
+# array can be divided by 2^x i.e. n / (2^x) to become 1
+# To get x, we log both sides. So if x = logn, means height of tree is logn. 
+# We need to merge n elements at each level, 
+# so total work is (num of actions at each level)*(num of levels)
+# TC: nlogn
+
 class Solution:
     def merge(self, first: List[int], second: List[int])->List[int]:
         i = 0
