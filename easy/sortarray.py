@@ -4,7 +4,12 @@
 # We need to merge n elements at each level, 
 # so total work is (num of actions at each level)*(num of levels)
 # TC: nlogn
-
+'''
+bubble sort: O(n^2)
+merge sort: O(nlogn)
+quick sort: O(nlogn)
+heap sort: O(nlogn)
+'''
 import sys
 class Solution:
     def merge(self, first: List[int], second: List[int])->List[int]:
